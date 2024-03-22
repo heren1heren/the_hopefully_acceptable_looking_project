@@ -144,50 +144,47 @@ body {
 	// body is display flex with direction column
 	line-height: 1.5;
 
-	background-color: white;
+	background-color: #0891b2;
 }
 // header includes  an image(bg-img with text inside), and paragraph container, and an icons' container
 
 header {
-	display: flex;
-	flex-direction: column;
-	border: 1px solid black;
-	text-align: center;
-	gap: 10px;
-	.image-background {
-		background: linear-gradient(-25deg, white 50%, black 50%);
-		display: flex;
-		justify-content: center;
-		min-height: 300px;
-		padding: 50px;
-		.image {
-			width: 70%;
-			flex: 1;
-			font-size: 3rem;
-			background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-			background-size: cover;
-			background-position: center;
-			p {
-				// comeback decorate it later
-				margin-top: 200px;
-			}
-		}
-	}
-
+	background: linear-gradient(-25deg, white 50%, #0891b2 50%);
 	.introduction-container {
-		text-align: left;
-		margin: 0px 10px 0px 20px;
+		margin-top: 100px;
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		align-items: center;
 	}
-	.icons-container {
-		align-self: center;
+	.image {
+		width: 60%;
+		height: 400px;
+		background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+		background-size: cover;
+		background-position: center;
+		// moving the p down to bottom
 		display: flex;
-		gap: 15px;
-		.colored {
-			color: black;
+		p {
+			color: white;
+			font-size: 2rem;
+			margin-top: auto;
 		}
+	}
+}
+
+.introduction-container {
+	text-align: left;
+	margin: 0px 10px 0px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.icons-container {
+	align-self: center;
+	display: flex;
+	gap: 15px;
+	.colored {
+		color: black;
 	}
 }
 
@@ -199,6 +196,9 @@ main {
 	}
 	.project-container {
 		display: grid;
+		// the goal: resize from 1 column -> 2 column in grid layout
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // if the web -page reach 600px width:
+		// or the project reach 500px width -> start to separate project into 2 columns;
 		gap: 20px;
 
 		.project {
@@ -237,12 +237,22 @@ footer {
 	color: white;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	gap: 10px;
 	.contact-container {
+		margin: 10px;
 	}
-	.address-container {
+	.contact-info {
+		font-size: 0.7rem;
+		margin: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
 	}
 	.icons-container {
+		align-self: center;
+		font-size: 2rem;
+		display: flex;
+		gap: 20px;
 		.colored {
 			color: black;
 		}
@@ -253,9 +263,67 @@ footer {
 		background-size: cover;
 		background-position: center;
 		width: 100%;
-		// how to set heigh of the container  = background-image least height possibly
-		// as I try that <img> tag will grow but background-image doesn't.
-		// do we have any way to set background-image grow like img tag
 		height: 50vh; // doesn't work
 	}
 }
+
+@mixin width-greater-than($width) {
+	@media (min-width: ($width + 1)) {
+		@content;
+	}
+}
+@include width-greater-than(600px) {
+	header {
+		background: linear-gradient(-35deg, white 50%, #0891b2 50%);
+		// change layout
+		// .image need to float to the left of introduction-container
+		// text inside the introduction-container will not be hide
+		// my name will be move to the top-right corner (from inside to outside) of the image
+		.introduction-container {
+			margin: 100px;
+			max-height: 300px;
+			// max-width: 300px;
+			border: 1px solid black;
+			background: white;
+			display: block;
+			// overflow: hidden;
+		}
+		.image {
+			// transform: translate(-30px, -50px); // leave blank space not what we want
+			// will fix it later
+			transform: translate(-30px, -50px);
+			float: left;
+			width: 50%;
+			height: 40vh;
+			background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+			background-size: cover;
+			background-position: center;
+			.my-name {
+				position: relative;
+				font-size: 2rem;
+				color: white;
+				float: right;
+				transform: translate(150px);
+			}
+		}
+		.icons-container {
+			display: none;
+		}
+	}
+	main {
+		.title {
+			margin-left: 20px;
+			margin-top: 10px;
+		}
+		text-align: left;
+	}
+}
+@include width-greater-than(1000px) {
+	//
+}
+/**
+ prioritize natural layout first
+implementing grid layout for project-containers in main tag.
+ starting change layout with media for header tag,
+ starting change layout with media queries for footer
+*/
