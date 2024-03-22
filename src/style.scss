@@ -123,7 +123,116 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+:root {
+	font-size: 20px;
+	font-family: "roboto", sans-serif;
+	a {
+		text-decoration: none;
+	}
+	svg {
+		height: 20px;
+		width: 20px;
+	}
+}
 
 body {
-	background-color: black;
+	// body is display flex with direction column
+	line-height: 1.5;
+
+	background-color: white;
+}
+// header includes  an image(bg-img with text inside), and paragraph container, and an icons' container
+
+header {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	text-align: center;
+	gap: 10px;
+	.image-background {
+		background: linear-gradient(-25deg, white 50%, black 50%);
+		display: flex;
+		justify-content: center;
+		min-height: 300px;
+		padding: 50px;
+		.image {
+			width: 70%;
+			flex: 1;
+			font-size: 3rem;
+			background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+			background-size: cover;
+			background-position: center;
+			p {
+				// comeback decorate it later
+				margin-top: 200px;
+			}
+		}
+	}
+
+	.introduction-container {
+		text-align: left;
+		margin: 0px 10px 0px 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		h1 {
+			text-align: center;
+			font-size: 2rem;
+		}
+	}
+	.icons-container {
+		align-self: center;
+		display: flex;
+		gap: 15px;
+		.colored {
+			color: black;
+		}
+	}
+}
+
+main {
+	border: 1px solid black;
+	text-align: center;
+	.title {
+		font-size: 2rem;
+	}
+	.project-container {
+		display: grid;
+		gap: 20px;
+
+		.project {
+			// give it a little border blur
+			margin: 20px;
+			display: flex;
+			border: 1px solid black;
+			border-radius: 0.1em;
+			box-shadow: 2px 3px 10px gray;
+			flex-direction: column;
+
+			.project-screen-shot {
+				min-height: 300px;
+				min-width: 100px;
+				background-color: green;
+				text-align: center;
+			}
+			.project-name-icons-wrapper {
+				margin: 5px 15px;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+			}
+			p {
+				margin: 5px 15px;
+				text-align: left;
+			}
+			.description {
+				padding-bottom: 60px;
+			}
+		}
+	}
+}
+footer {
+	border: 1px solid black;
 }
