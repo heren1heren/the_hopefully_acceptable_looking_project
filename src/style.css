@@ -147,14 +147,26 @@ table {
 
 body {
   line-height: 1.5;
-  background-color: #0891b2;
+  background-color: white;
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+header .image-background {
   background: linear-gradient(-25deg, white 50%, #0891b2 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header .image-background .image p {
+  font-size: 2rem;
+  color: white;
+  margin-top: auto;
 }
 header .introduction-container {
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,9 +179,10 @@ header .image {
   background-position: center;
   display: flex;
 }
-header .image p {
+header .image .my-name {
   color: white;
   font-size: 2rem;
+  margin-left: auto;
   margin-top: auto;
 }
 
@@ -267,30 +280,33 @@ footer .image {
 
 @media (min-width: 601px) {
   header {
-    background: linear-gradient(-35deg, white 50%, #0891b2 50%);
-  }
-  header .introduction-container {
-    margin: 100px;
-    max-height: 300px;
-    border: 1px solid black;
-    background: white;
+    all: unset;
+    background: linear-gradient(-25deg, white 50%, #0891b2 50%);
     display: block;
+    padding: 50px;
   }
-  header .image {
-    transform: translate(-30px, -50px);
+  header .image-background {
+    all: unset;
     float: left;
-    width: 50%;
-    height: 40vh;
-    background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-    background-size: cover;
-    background-position: center;
+    min-height: 200px;
   }
-  header .image .my-name {
+  header .image-background .image {
+    display: block;
+    width: auto;
+    height: 60vh;
+  }
+  header .image-background .image p {
     position: relative;
-    font-size: 2rem;
-    color: white;
     float: right;
     transform: translate(150px);
+  }
+  header .introduction-container {
+    display: block;
+    background-color: white;
+    border: 1px black solid;
+  }
+  header .introduction-container h1 {
+    display: inline;
   }
   header .icons-container {
     display: none;
@@ -301,6 +317,11 @@ footer .image {
   main .title {
     margin-left: 20px;
     margin-top: 10px;
+  }
+}
+@media (min-width: 701px) {
+  header {
+    background: linear-gradient(-15deg, white 50%, #0891b2 50%);
   }
 }
 /**

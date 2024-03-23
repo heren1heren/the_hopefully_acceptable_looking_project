@@ -144,14 +144,30 @@ body {
 	// body is display flex with direction column
 	line-height: 1.5;
 
-	background-color: #0891b2;
+	background-color: white;
 }
 // header includes  an image(bg-img with text inside), and paragraph container, and an icons' container
-
+@mixin flexColumn() {
+	display: flex;
+	flex-direction: column;
+}
 header {
-	background: linear-gradient(-25deg, white 50%, #0891b2 50%);
+	@include flexColumn();
+	text-align: center;
+	.image-background {
+		background: linear-gradient(-25deg, white 50%, #0891b2 50%);
+		@include flexColumn();
+		align-items: center;
+		.image {
+			p {
+				font-size: 2rem;
+				color: white;
+				margin-top: auto;
+			}
+		}
+	}
 	.introduction-container {
-		margin-top: 100px;
+		// margin-top: 100px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -164,9 +180,10 @@ header {
 		background-position: center;
 		// moving the p down to bottom
 		display: flex;
-		p {
+		.my-name {
 			color: white;
 			font-size: 2rem;
+			margin-left: auto;
 			margin-top: auto;
 		}
 	}
@@ -272,40 +289,43 @@ footer {
 		@content;
 	}
 }
+
 @include width-greater-than(600px) {
 	header {
-		background: linear-gradient(-35deg, white 50%, #0891b2 50%);
-		// change layout
-		// .image need to float to the left of introduction-container
-		// text inside the introduction-container will not be hide
-		// my name will be move to the top-right corner (from inside to outside) of the image
-		.introduction-container {
-			margin: 100px;
-			max-height: 300px;
-			// max-width: 300px;
-			border: 1px solid black;
-			background: white;
-			display: block;
-			// overflow: hidden;
-		}
-		.image {
-			// transform: translate(-30px, -50px); // leave blank space not what we want
-			// will fix it later
-			transform: translate(-30px, -50px);
+		all: unset;
+		background: linear-gradient(-25deg, white 50%, #0891b2 50%);
+		display: block;
+		padding: 50px;
+		.image-background {
+			all: unset;
 			float: left;
-			width: 50%;
-			height: 40vh;
-			background-image: url("https://images.pexels.com/photos/7726308/pexels-photo-7726308.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-			background-size: cover;
-			background-position: center;
-			.my-name {
-				position: relative;
-				font-size: 2rem;
-				color: white;
-				float: right;
-				transform: translate(150px);
+			min-height: 200px;
+			.image {
+				display: block;
+				width: auto;
+				height: 60vh;
+				p {
+					position: relative;
+					float: right;
+					transform: translate(150px);
+				}
 			}
 		}
+		.introduction-container {
+			display: block;
+			background-color: white;
+			border: 1px black solid;
+			h1 {
+				display: inline;
+			}
+		}
+		// .introduction-container::before {
+		// 	content: "";
+		// 	align-self: flex-start;
+		// 	display: inline-block;
+		// 	height: 30vh;
+		// 	width: 90px;
+		// }
 		.icons-container {
 			display: none;
 		}
@@ -316,6 +336,11 @@ footer {
 			margin-top: 10px;
 		}
 		text-align: left;
+	}
+}
+@include width-greater-than(700px) {
+	header {
+		background: linear-gradient(-15deg, white 50%, #0891b2 50%);
 	}
 }
 @include width-greater-than(1000px) {
