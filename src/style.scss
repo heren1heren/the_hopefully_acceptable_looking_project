@@ -295,10 +295,16 @@ footer {
 		all: unset;
 		background: linear-gradient(-25deg, white 50%, #0891b2 50%);
 		display: block;
-		padding: 50px;
+		padding: 70px;
 		.image-background {
 			all: unset;
 			float: left;
+			// position: relative;
+
+			// right: 20px;
+			// bottom: 20px;
+			margin-top: -60px;
+			margin-left: -30px;
 			min-height: 200px;
 			.image {
 				display: block;
